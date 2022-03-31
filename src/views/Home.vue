@@ -1,17 +1,21 @@
 <template>
-  <div class="home">
-   <h2>Birdev</h2>
+  <div class="container">
+  <Jumbotron/>
+   <CTA/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Navbar from '@/components/Navbar.vue'
-
+import Jumbotron from '@/components/Jumbotron.vue'
+import CTA from '@/components/CTA.vue'
 export default {
   name: 'Home',
   components: {
-    Navbar
+    Navbar,
+    Jumbotron,
+    CTA
   }
 }
 </script>

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ProductCardList  from '@/components/ProductCardList.vue'
+import ProductCardList  from '@/components/product/ProductCardList.vue'
 import {mapActions} from 'vuex'
 export default {
     components:{

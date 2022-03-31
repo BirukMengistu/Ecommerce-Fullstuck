@@ -9,13 +9,12 @@
               <p class="h3 text-danger">{{product.price}} SEK</p>
                     <div class="mt-5">
                       <p class="h3 text-info">{{product.desc}}</p>
-                      <p class="h4 text-black">{{quantity}}</p>
                     </div>
                
        </div>
      
               <div class="text-end mt-2">
-                  <button @click="quantity++" class="btn btn-info mb-2"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>
+                  <button @click="addToCart({product, quantity})" class="btn btn-info mb-2"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>
                </div>
     </div>
   </div>
@@ -32,7 +31,7 @@ export default {
   },
  
  methods: {
-    ...mapActions(['getProductById'])
+    ...mapActions(['getProductById', 'addToCart'])
   },
   computed: {
     ...mapGetters(['product'])

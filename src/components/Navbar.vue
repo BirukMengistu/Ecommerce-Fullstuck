@@ -21,19 +21,21 @@
             class="collapse navbar-collapse" 
              id="navbarSupportedContent">
             <!-- Navbar brand -->
-            <a class="navbar-brand mt-2 mt-lg-0" to="#">
+            <router-link class="navbar-brand brand-fa mt-2 mt-lg-0" to="/">
               <i class=" fa-solid fa-store "></i>
                  Birdev.com
-            </a>
+            </router-link>
             
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="#">Product</a>
+                <router-link class="nav-link" to="/products">Products</router-link>
               </li>
-            
+               <li class="nav-item">
+                 <router-link class="nav-link" to="service">Service</router-link>
+              </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Service</a>
+                 <router-link class="nav-link" to="/team">Team</router-link>
               </li>
             </ul>
             <!-- Left links -->
@@ -53,43 +55,40 @@
                     aria-expanded="false">
                   <i class="fas fa-shopping-cart "></i>
                      <!-- Notifications -->
-                  <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                  <span v-if="cartItemCount"  class="badge rounded-pill badge-notification bg-danger">{{cartItemCount}}</span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-end"
+                <div class="dropdown-menu dropdown-menu-end shopping-cart"
                     aria-labelledby="navbarDropdownMenuLink">
-                   Cart
+                  <ShoppingCart />
                 </div>
           </div>
          
            
             <!-- Avatar -->
-            <div class="dropdown">
-          
-              <a
-                class="dropdown-toggle d-flex align-items-center"
-                href="#"
-                id="navbarDropdownMenuAvatar"
-                role="button"
-                data-mdb-toggle="dropdown"
-                aria-expanded="false"
-              >
-                  <i class="fa-solid fa-user-plus"></i>
-              </a>
-              <ul
-                class="dropdown-menu dropdown-menu-end"
-                aria-labelledby="navbarDropdownMenuAvatar"
-              >
-                <li>
-                  <a class="dropdown-item" href="#">My profile</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Settings</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Logout</a>
-                </li>
-              </ul>
-            </div>
+               <div class="dropdown" v-if="loggedIn">
+          <a
+            class="text-reset dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuAvatar"
+            role="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-user"></i>
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdownMenuAvatar"
+          >
+            <li>
+              <router-link class="dropdown-item" to="/myprofile">My profile</router-link>
+            </li>
+            <li>
+              <router-link class="dropdown-item" @click="logout" to="/login">Logout</router-link>
+            </li>
+          </ul>
+        </div>
+             <router-link to="/login" class="nav-link text-dark" v-else>Login</router-link>
           </div>  
           <!-- Right elements -->
         </div>
@@ -97,13 +96,20 @@
       </nav>
 <!-- Navbar -->
 </template>
-import * as mdb from 'mdb-ui-kit'; // lib
-import { Input } from 'mdb-ui-kit'; // module
+
 <script>
+import ShoppingCart from './shoppingCart/ShoppingCart.vue'
+import {mapGetters , mapActions} from 'vuex'
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  name: 'Navbar',
+ 
+  components:{
+    ShoppingCart,
+  }, computed: {
+    ...mapGetters(['cartItemCount', 'loggedIn'])
+  },
+  methods: {
+    ...mapActions(['logout'])
   }
 }
 </script>
@@ -113,6 +119,7 @@ export default {
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -124,7 +131,11 @@ li {
 .bg-Main{
 background: #f7c211;
 }
-a {
-  color: #42b983;
+.shopping-cart{
+min-width: 400px;
+color:red;
+}
+.brand-fa{
+margin-left: 5%;
 }
 </style>
