@@ -12,7 +12,13 @@ export default {
             console.log(token)
             state.userToken=token
             state.loggedIn=true
-        }
+        },
+        SET_USER_NOT:(state , token)=>{
+          console.log(token)
+          state.userToken=token
+          state.loggedIn=false
+      },
+        
     },
     actions: {
         register : async ({commit} , payload)=>{
@@ -38,7 +44,7 @@ export default {
              if(response.status === 200){
                 localStorage.setItem('token', response.data.token)
                 commit('SET_USER', response.data.token)
-        
+                
                 if(payload.route) {
                   router.push(payload.route)
                 } else {
@@ -50,7 +56,7 @@ export default {
         logout: ({commit}) => {
             try {
               localStorage.removeItem('token')
-              commit('SET_USER', null)
+              commit('SET_USER_NOT', null)
             } catch {
               console.log('not logged in')
             }

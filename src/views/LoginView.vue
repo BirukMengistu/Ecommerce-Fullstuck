@@ -72,17 +72,18 @@ export default {
         email: this.email,
         password: this.password
       }
-      // await this.login(user)
-      // if(this.$route.query.redirect) {
-        //   this.$router.push(this.$route.query.redirect)
-      // } else {
-        //   this.$router.push({ name: 'home' })
-      // }
+  
+       
 
-
-   let route = this.$route.query.redirect
+       
+       let route = this.$route.query.redirect
        
         this.login({user})
+         if(this.$route.query.redirect) {
+           this.$router.push(this.$route.query.redirect)
+       } else {
+           this.$router.push({ name: 'Home' })
+       }
     }
   }
 }

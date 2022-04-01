@@ -1,6 +1,6 @@
 <template >
     
-  <footer class="text-center text-white bg-Main footer-bs" >
+  <footer class="text-center text-white bg-Main " >
   <!-- Grid container -->
   <div class="container pt-4">
     <!-- Section: Social media -->

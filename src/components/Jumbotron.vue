@@ -2,7 +2,7 @@
    <div class="container">
    <div class='row'>
      <div class='col-md-7'>
-        <img src="@/assets/logo.png" alt="" srcset=""/>
+        <img class='jumbotron-img' src="@/assets/online.jpg" alt="" srcset=""/>
      </div>
         <div class='col-md-5'>
             <h1 class="display-4">Dear, Customer!</h1>
@@ -23,6 +23,10 @@ export default {
     name:'Jumbotron'
 }
 </script>
-<style>
-    
+<style scope>
+ .jumbotron-img{
+ width: 350px;
+ height: 300px;
+ border-radius: 25px;
+ margin-left: 0;}   
 </style>

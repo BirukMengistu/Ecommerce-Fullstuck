@@ -17,6 +17,7 @@
                   
                   </div>
                   <p>Total <span class="price" ><b>${{shoppingCartTotal}}</b></span></p>
+              
               </div>
               </div>
   </div>           
@@ -79,7 +80,7 @@
           <label>
             <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
           </label>
-          <input type="submit" value="Continue to checkout" class="btn">
+          <div><button class='btn bg-Main'>add to order</button></div>
         </form>
       </div>
     </div>   
@@ -87,8 +88,7 @@
               
               
               
-              
-              
+              <!-- display only if cart is empty   -->   
           <div  v-if="shoppingCart.length < 1 " class="container">
             <h3 class="text-danger justify-content-center mt-5">The Cart is empty now, please add some items on the cart
             <i class='fas fa-shopping-cart fa-rotate-90  fa-3x'></i>
@@ -101,13 +101,30 @@
     
 </template>
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters , mapActions} from 'vuex'
 export default {
-    
+    data(){
+      return {
+        token:null,
+        orderlist:[]
+      }
+    },
     computed: {
-    ...mapGetters(['shoppingCart', 'shoppingCartTotal'])
+    ...mapGetters(['shoppingCart', 'shoppingCartTotal' , 'getOrders' ])
+     },
+     methods: {
+       ...mapActions(['save_order']),
+       saveorde(){
+         let order = {}
+          let items = this.shoppingCart
+                       
+            }
+       }
+       
+      
      }
-     }
+     
+    
      
     
 </script>
