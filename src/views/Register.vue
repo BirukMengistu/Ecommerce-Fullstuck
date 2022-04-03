@@ -11,40 +11,41 @@
               <form @click.prevent="handleSubmit">
 
                 <div class="form-group mb-4">
-                  <input v-model='firstName' type="text" id="form3Example1cg" class="form-control form-control-lg border" />
                   <label class="form-label" for="form3Example1cg">First Name</label>
+                  <input v-model='firstName' type="text" id="form3Example1cg" class="form-control form-control-lg border" />
+                  <div v-if='!firstName' class='errors'> <p>Name required  </p></div>
                 </div>
                   <div class="form-group mb-4">
+                    <label class="form-label" for="form3Example1cg">Second Name</label>
                   <input v-model='lastName' type="text" id="form3Example1cg" class="form-control form-control-lg border" />
-                  <label class="form-label" for="form3Example1cg">Second Name</label>
+                   <div v-if='!lastName' class='errors'> <p>Name required  </p></div>
                 </div>
 
                 <div class="form-group mb-4">
-                  <input v-model='email' type="email" id="form3Example3cg" class="form-control form-control-lg border" />
                   <label class="form-label" for="form3Example3cg">Your Email</label>
+                  <input v-model='email' type="email" id="form3Example3cg" class="form-control form-control-lg border" />
+                  <div v-if='!email' class='errors'> <p> required valid </p></div>
                 </div>
 
                 <div class="form-group mb-4">
-                  <input v-model='password1' type="password" id="form3Example4cg" class="form-control form-control-lg border" />
                   <label class="form-label" for="form3Example4cg">Password</label>
+                  <input v-model='password1' type="password" id="form3Example4cg" class="form-control form-control-lg border" />
+                  <div v-if='!password1' class='errors'> <p> required valid password </p></div>
                 </div>
 
-                <div class="form-outline mb-4">
-                  <input v-model='password2' type="password" id="form3Example4cdg" class="form-control form-control-lg border" />
-                  <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                </div>
-<!-- 
+
                 <div class="form-check d-flex justify-content-center mb-5">
                   <input
-                    class="form-check-input me-2"
+                    class="form-check-input me-2 bg-Main"
                     type="checkbox"
-                    value=""
-                    id="form2Example3cg"
+                    v-model="terms"
+                    value="true"
                   />
                   <label class="form-check-label" for="form2Example3g">
                     I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
                   </label>
-                </div> -->
+                    <div  v-if='!terms' class='errors'> <p>need to check box {{terms}} </p></div>
+                </div> 
 
                 <div class="d-flex justify-content-center">
                   <button class="btn bg-Main btn-block btn-lg gradient-custom-4 text-body">Register</button>
@@ -67,19 +68,40 @@ import { mapActions} from 'vuex'
 export default {
    data(){
        return {
-         
+                errors: [],
                firstName :'',
                lastName :'',
                email :'',
                password1:'',
-               password2:''
+               terms:false
            
        }
    } ,
     methods: {
+       checkForm: function (e) {
+     
+
+      this.errors = [];
+
+      if (!this.lastName) {
+        this.errors.push('Name required.');
+      }
+      if (!this.firstName) {
+        this.errors.push('name required.');
+      }
+       if (!this.email) {
+        this.errors.push('Email required.');
+      }
+      if (!this.terms) {
+        this.errors.push(' checkbox.');
+      }
+      
+
+      e.preventDefault();
+    },
     ...mapActions(['register']),
     async handleSubmit(){
-          if(this.email.trim() === ''|| this.firstName.trim() === '' || this.lastName.trim() === ''|| this.password1.trim() === '') {
+          if(this.email.trim() === ''|| this.firstName.trim() === '' || this.lastName.trim() === ''|| this.terms === false) {
             return
            }
 
@@ -101,5 +123,9 @@ export default {
 <style >
   .text-Main{
   color: #ffc400;
+  }
+  .errors{
+    font-size: 1.3rem;
+    color: red;
   }   
 </style>

@@ -27,6 +27,13 @@
   <p><button class='btn bg-Main'>Contact</button></p>
 </div>
 </div>
+
+     <teleport to=".modal">
+      <div class="modals">
+         <p>Hello from the modal!</p>
+      <button >Close</button>
+    </div>
+   </teleport>
 </template>
 <style scoped>
 .card {

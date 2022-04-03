@@ -16,16 +16,18 @@
                 </div>
 
                 <form @submit.prevent="handleSubmit">
-                  <p>Please login to your account</p>
+                 
 
-                  <div class="form-outline mb-4">
-                    <input v-model="email" type="email" id="form2Example11" class="form-control border" placeholder="Phone number or email address"/>
+                  <div class="form-group mb-4">
                     <label class="form-label" for="form2Example11">Username</label>
+                    <input v-model="email" type="email" id="form2Example11" class="form-control border" placeholder="Phone number or email address"/>
+                    
                   </div>
 
-                  <div class="form-outline mb-4">
-                    <input v-model="password" type="password" id="form2Example22" class="form-control border" />
+                  <div class="form-group mb-4">
                     <label class="form-label" for="form2Example22">Password</label>
+                    <input v-model="password" type="password" placeholder="password" id="form2Example22" class="form-control border" />
+                    
                   </div>
 
                   <div class="text-center pt-1 mb-5 pb-1">
